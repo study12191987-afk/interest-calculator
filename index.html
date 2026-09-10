@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>利息计算器</title>
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            padding: 20px;
+        }
+
+        .calculator {
+            max-width: 400px;
+            margin: 50px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            font-size: 18px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 25px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .result {
+            text-align: center;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calculator">
+
+        <h1>利息计算器</h1>
+
+        <label>本金</label>
+        <input type="number" id="principal" placeholder="请输入本金">
+
+        <label>年利率 (%)</label>
+        <input type="number" id="rate" placeholder="例如：6">
+
+        <button onclick="calculateInterest()">计算利息</button>
+
+        <div class="result">
+            <h2>每月利息</h2>
+            <h2>$<span id="result">0.00</span></h2>
+        </div>
+
+    </div>
+
+    <script>
+        function calculateInterest() {
+
+            let principal =
+                Number(document.getElementById("principal").value);
+
+            let rate =
+                Number(document.getElementById("rate").value);
+
+            let monthlyInterest =
+                principal * (rate / 100) / 12;
+
+            document.getElementById("result").textContent =
+                monthlyInterest.toFixed(2);
+        }
+    </script>
+    <script>
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("service-worker.js");
+    }
+</script>
+
+    
+
+</body>
+</html>
